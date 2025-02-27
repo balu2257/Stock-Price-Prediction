@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <h1>Sentiment Analysis for {{ stock_symbol }}</h1>
+    <h2>Sentiment: {{ sentiment }}</h2>
+
+    <h3>Top 3 Tweets:</h3>
+    {% if top_tweets %}
+        <ul>
+            {% for tweet in top_tweets %}
+                <li>
+                    <strong>Tweet:</strong> {{ tweet.text }} <br>
+                    <strong>Created At:</strong> {{ tweet.created_at }} <br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tweets found for this stock symbol.</p>
+    {% endif %}
+
+    <h3>Top 3 News Articles:</h3>
+    {% if top_articles %}
+        <ul>
+            {% for article in top_articles %}
+                <li>
+                    <strong>Title:</strong> <a href="{{ article.url }}" target="_blank">{{ article.title }}</a><br>
+                    <strong>Description:</strong> {{ article.description }} <br>
+                    <strong>Published At:</strong> {{ article.publishedAt }} <br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No news articles found for this stock symbol.</p>
+    {% endif %}
+</body>
+</html>
